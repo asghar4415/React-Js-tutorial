@@ -1,0 +1,14 @@
+-virtual DOM vs real DOM
+-Create React App through vitejs
+-components
+- events
+
+-Components: Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML via a render() function. Components come in two types, Class components and Function components, in this tutorial we will concentrate on Class components.
+
+
+-Events:  events are used to handle user interaction with the application. Events are declared in the form of attributes in the JSX element. The attribute name should be in camelCase. The attribute value should be a function. The function should be defined in the component class.
+
+-Props: Props are arguments passed into React components. Props are passed to components via HTML attributes. React Props are like function arguments in JavaScript and attributes in HTML. To send props into a component, use the same syntax as HTML attributes: <ComponentName propName={propValue} />.( propValue is a function or a variable)
+
+-States: The state is an instance of React Component Class can be defined as an object of a set of observable properties that control the behavior of the component. In other words, the State of a component is an object that holds some information that may change over the lifetime of the component.
+
