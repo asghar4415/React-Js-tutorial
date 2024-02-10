@@ -1,0 +1,2 @@
+React works on one way data flow. So, if you want to update the state of a component, you need to use the `setState` method. This method will update the state of the component and re-render the component. 
+
