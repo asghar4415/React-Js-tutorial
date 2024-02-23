@@ -6,8 +6,29 @@ import './index.css'
 function App() {
   const [data,setData]=useState({})
   const [location, setLocation] = useState('')
- const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=988cdcf53c4792a36770cd7c6f58ed96`
+ const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=988cdcf53c4792a36770cd7c6f58ed96`
 
+ function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  console.log(position.coords.latitude)
+  console.log(position.coords.longitude)
+  axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=988cdcf53c4792a36770cd7c6f58ed96`).then((response) => {
+    setData(response.data)
+    console.log(response.data)
+
+  })
+}
+
+if (data.name === undefined){
+  getLocation()
+}
 
 const searchLocation = (event) => {
 
@@ -40,10 +61,11 @@ const searchLocation = (event) => {
             <p>{data.name}</p>
           </div>
           <div className="temp">
-            {data.main ? <h1>{data.main.temp.toFixed()} F</h1> : null}
+            {data.main ? <h1>{data.main.temp.toFixed()}°C</h1> : null}
           </div>
           <div className="description">
             {data.weather ? <p>{data.weather[0].main}</p> : null}
+            
           </div>
         </div>
 
@@ -51,7 +73,7 @@ const searchLocation = (event) => {
 
         <div className='bottom'>
           <div className="feels">
-            {data.main ? <p className='bold'>{data.main.feels_like.toFixed()} F</p> : null}
+            {data.main ? <p className='bold'>{data.main.feels_like.toFixed()}°C</p> : null}
           <p>Feels Like</p>
           </div>
           <div className="humidity">
